@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ['andrei@skopenko.net']
   spec.description   = 'Test Kitchen provisioner based on chef_zero that generates searchable nodes'
   spec.summary       = spec.description
-  spec.homepage      = 'https://github.com/Parallels/kitchen-chefzero-nodes'
+  spec.homepage      = 'https://github.com/scopenco/kitchen-chefzero-nodes'
   spec.license       = 'Apache 2.0'
 
   spec.files         = `git ls-files -z`.split("\x0")
