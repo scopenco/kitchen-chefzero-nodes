@@ -1,0 +1,46 @@
+---
+driver:
+  name: vagrant
+  provider: parallels
+
+provisioner:
+  name: chef_zero_nodes
+  nodes_path: test/integration/nodes
+  policyfile: test/integration/cookbooks/test/Policyfile.rb
+
+platforms:
+  - name: el6
+    driver:
+      box: bento/centos-6.8
+
+  - name: win2012R2
+    driver:
+      box: win-2012r2-base
+      customize:
+        memsize: 2048
+        cpus: 2
+
+suites:
+  - name: sftp
+    transport:
+      name: sftp
+    provisioner:
+      named_run_list: sftp
+    excludes:
+      - win2012R2
+
+  - name: winrm
+    transport:
+      name: winrm
+    provisioner:
+      named_run_list: win
+    excludes:
+      - el6
+
+  - name: ssh
+    transport:
+      name: ssh
+    provisioner:
+      named_run_list: ssh
+    excludes:
+      - win2012R2

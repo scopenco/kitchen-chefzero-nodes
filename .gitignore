@@ -1,0 +1,17 @@
+# Editors etc
+*~
+*#
+.#*
+\#*#
+.*.sw[a-z]
+*.un~
+
+*.gem
+.bundle/
+.config/
+.kitchen/
+Gemfile.lock
+Policyfile.lock.json
+pkg/
+test/integration/nodes
+.kitchen.local.yml
