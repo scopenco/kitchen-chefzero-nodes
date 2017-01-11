@@ -1,3 +1,6 @@
+## 1.0.4 (jan 11, 2017)
+  - Fix bug related to sftp transport
+
 ## 1.0.3 (dec 21, 2016)
   - Add chmod for node json that fix converge in chefdk 1.0.3
 

@@ -19,6 +19,6 @@
 module Kitchen
   # Version string for chefzero_nodes Kitchen driver
   module Provisioner
-    CHEF_ZERO_NODES_VERSION = '1.0.3'.freeze
+    CHEF_ZERO_NODES_VERSION = '1.0.4'.freeze
   end
 end
