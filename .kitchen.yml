@@ -11,9 +11,9 @@ provisioner:
   policyfile: test/integration/cookbooks/test/Policyfile.rb
 
 platforms:
-  - name: el6
+  - name: el7
     driver:
-      box: bento/centos-6.8
+      box: bento/centos-7.2
 
   - name: win2012R2
     driver:
@@ -37,7 +37,7 @@ suites:
     provisioner:
       named_run_list: win
     excludes:
-      - el6
+      - el7
 
   - name: ssh
     transport:

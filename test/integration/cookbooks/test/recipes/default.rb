@@ -16,26 +16,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-kernel = node['kernel']
-auto_node = node.automatic
+interfaces = node["network"]["interfaces"]
+interface_key = interfaces.keys.last
 
 # linux
 if node["virtualization"] && node["virtualization"]["system"] == "vbox"
-  interface = node["network"]["interfaces"].select do |key|
-    puts key
-    key == "eth1"
-  end
-  unless interface.empty?
-    interface["eth1"]["addresses"].each do |ip, params|
-      if params['family'] == ('inet')
-        auto_node["ipaddress"] = ip
-      end
-    end
-  end
-
+  interfaces[interface_key]['addresses'].each { |ip, params| node.automatic["ipaddress"] = ip if params['family'] == ('inet') }
 # windows
-elsif kernel && kernel["cs_info"] && kernel["cs_info"]["model"] == "VirtualBox"
-  interfaces = node["network"]["interfaces"]
-  interface_key = interfaces.keys.last
-  auto_node["ipaddress"] = interfaces[interface_key]["configuration"]["ip_address"][0]
+elsif node['kernel'] && node['kernel']["cs_info"] && node['kernel']["cs_info"]["model"] == "VirtualBox"
+  node.automatic["ipaddress"] = interfaces[interface_key]["configuration"]["ip_address"][0]
 end
