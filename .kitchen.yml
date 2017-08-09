@@ -1,7 +1,9 @@
 ---
 driver:
   name: vagrant
-  provider: parallels
+  network:
+    private_network:
+      type: dhcp
 
 provisioner:
   name: chef_zero_nodes

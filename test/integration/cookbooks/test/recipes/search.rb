@@ -16,18 +16,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-sftp_node = search(:node, "name:sftp-* AND platform:#{node['platform']}")
+sftp_node = search(:node, "name:sftp-* AND platform:#{node['platform']}").first
+pp sftp_node['ipaddress']
 ruby_block 'save sftp attributes' do
   block do
     parent = File.join(ENV['TEMP'] || '/tmp', 'kitchen')
-    IO.write(File.join(parent, 'sftp.json'), sftp_node[0].to_json)
+    IO.write(File.join(parent, 'sftp.json'), sftp_node.to_json)
   end
 end
 
-win_node = search(:node, 'platform:windows')
+win_node = search(:node, 'platform:windows').first
+pp win_node['ipaddress']
 ruby_block 'save win attributes' do
   block do
     parent = File.join(ENV['TEMP'] || '/tmp', 'kitchen')
-    IO.write(File.join(parent, 'win.json'), win_node[0].to_json)
+    IO.write(File.join(parent, 'win.json'), win_node.to_json)
   end
 end
