@@ -17,7 +17,7 @@ end
 
 group :kitchen do
   gem 'chef-dk', '~> 0.10'
-  gem 'test-kitchen', '~> 1.5'
   gem 'kitchen-sync', '~> 2.0'
   gem 'kitchen-vagrant', '~> 0.19'
+  gem 'test-kitchen', '~> 1.5'
 end

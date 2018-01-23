@@ -16,13 +16,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-interfaces = node["network"]["interfaces"]
+interfaces = node['network']['interfaces']
 interface_key = interfaces.keys.last
 
 # linux
-if node["virtualization"] && node["virtualization"]["system"] == "vbox"
-  interfaces[interface_key]['addresses'].each { |ip, params| node.automatic["ipaddress"] = ip if params['family'] == ('inet') }
+if node['virtualization'] && node['virtualization']['system'] == 'vbox'
+  interfaces[interface_key]['addresses'].each { |ip, params| node.automatic['ipaddress'] = ip if params['family'] == 'inet' }
 # windows
-elsif node['kernel'] && node['kernel']["cs_info"] && node['kernel']["cs_info"]["model"] == "VirtualBox"
-  node.automatic["ipaddress"] = interfaces[interface_key]["configuration"]["ip_address"][0]
+elsif node['kernel'] && node['kernel']['cs_info'] && node['kernel']['cs_info']['model'] == 'VirtualBox'
+  node.automatic['ipaddress'] = interfaces[interface_key]['configuration']['ip_address'][0]
 end
