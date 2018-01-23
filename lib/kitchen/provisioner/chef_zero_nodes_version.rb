@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+
 #
 # Author:: Andrei Skopenko (<andrei@skopenko.net>)
 #
@@ -19,6 +20,6 @@
 module Kitchen
   # Version string for chefzero_nodes Kitchen driver
   module Provisioner
-    CHEF_ZERO_NODES_VERSION = '1.0.4'.freeze
+    CHEF_ZERO_NODES_VERSION = '1.0.5'.freeze
   end
 end

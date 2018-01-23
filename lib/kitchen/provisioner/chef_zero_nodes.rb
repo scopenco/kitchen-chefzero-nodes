@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+
 #
 # Author:: Andrei Skopenko (<andrei@skopenko.net>)
 #
@@ -41,7 +42,7 @@ module Kitchen
       def converge(state)
         provisioner = instance.provisioner
         provisioner.create_sandbox
-        sandbox_dirs = Dir.glob("#{provisioner.sandbox_path}/*")
+        sandbox_dirs = Util.list_directory(provisioner.sandbox_path)
         instance.transport.connection(backcompat_merged_state(state)) do |conn|
           conn.execute(env_cmd(provisioner.install_command))
           conn.execute(env_cmd(provisioner.init_command))
@@ -161,6 +162,10 @@ module Kitchen
     class ChefZeroNodes < ChefZero
       # (see ChefZero#create_sandbox)
       def create_sandbox
+        if config[:nodes_path].nil?
+          info("Provisioner setting 'nodes_path' is not defined! Using 'test/fixtures/nodes' for node objects!")
+          config[:nodes_path] = 'test/fixtures/nodes'
+        end
         FileUtils.rm(ext_node_file) if File.exist?(ext_node_file)
         create_chefzero_sandbox
       end
